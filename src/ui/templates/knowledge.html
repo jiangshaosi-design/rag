@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG 智能体 — 知识库管理</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/knowledge.css">
+</head>
+<body class="app-page">
+  <header class="app-header">
+    <a href="/" class="header-logo">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span class="gradient-text">RAG 知识库管理</span>
+    </a>
+    <div class="header-nav">
+      <a href="/app" class="nav-link">💬 智能问答</a>
+    </div>
+    <div class="header-status">
+      <div class="status-item"><span class="status-dot green"></span><span>数据库</span></div>
+      <div class="status-item"><span class="status-dot green" id="status-faiss"></span><span>向量库</span></div>
+    </div>
+  </header>
+
+  <div class="kb-layout">
+    <!-- 左侧：文档管理 -->
+    <aside class="kb-left">
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">📁 文档上传</h3>
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="fileInput" accept=".pdf,.docx,.md" class="sr-only">
+          <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <p class="upload-text">拖拽文件到此处，或 <span>点击选择</span></p>
+          <p class="upload-hint">支持 PDF / DOCX / Markdown</p>
+        </div>
+        <div class="upload-progress" id="uploadProgress" style="display:none">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <p class="progress-text" id="progressText">处理中...</p>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">📋 已入库文档</h3>
+        <div class="doc-list" id="docList"><div class="doc-empty">暂无文档，请上传</div></div>
+      </div>
+    </aside>
+
+    <!-- 右侧：统计 + 评估 + 内容预览 -->
+    <main class="kb-right">
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">📊 知识库统计</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="statDocs">0</div>
+            <div class="stat-label">文档数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statChunks">0</div>
+            <div class="stat-label">文本块数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statVectors">0</div>
+            <div class="stat-label">向量数</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">🔬 系统评估</h3>
+        <div class="eval-controls">
+          <select id="evalMode" style="width:100%;background:var(--bg-input);color:var(--text-primary);border:1px solid var(--border-color);border-radius:6px;padding:6px 8px;font-size:0.8rem;">
+            <option value="auto">📝 自动生成 (通用)</option>
+            <option value="manual">📋 手工用例</option>
+          </select>
+          <div style="margin:8px 0;">
+            <input type="range" id="evalCount" min="3" max="10" value="5" style="width:100%;">
+            <span style="font-size:0.7rem;color:var(--text-muted);">用例数: <span id="evalCountLabel">5</span></span>
+          </div>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--text-muted);margin:6px 0;">
+            <input type="checkbox" id="evalFaithfulness" checked> 忠实度评估 (LLM)
+          </label>
+          <button class="btn btn-primary btn-full" id="runEvalBtn" style="font-size:0.8rem;">🚀 运行评估</button>
+        </div>
+        <div id="evalResults" style="margin-top:8px;"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">📄 文档内容预览</h3>
+        <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">点击左侧文档查看 MinerU 处理后的内容</p>
+        <div id="docPreview" class="doc-preview">
+          <div class="doc-empty">点击文档名称查看预览</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/static/js/common.js"></script>
+  <script src="/static/js/knowledge.js"></script>
+</body>
+</html>

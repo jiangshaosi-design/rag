@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG 智能体 — 知识问答</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body class="app-page">
+  <header class="app-header">
+    <a href="/" class="header-logo">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span class="gradient-text">RAG 智能问答</span>
+    </a>
+    <div class="header-nav">
+      <a href="/knowledge" class="nav-link">📁 知识库管理</a>
+    </div>
+    <div class="header-status">
+      <div class="status-item"><span class="status-dot green" id="status-db"></span><span>数据库</span></div>
+      <div class="status-item"><span class="status-dot green" id="status-faiss"></span><span>向量库</span></div>
+      <div class="status-item"><span class="status-dot green" id="status-llm"></span><span>大模型</span></div>
+    </div>
+  </header>
+
+  <div class="chat-layout">
+  <main class="chat-main">
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-welcome">
+        <div class="welcome-icon">
+          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h2>开始智能问答</h2>
+        <p>上传文档后即可向 AI 提问，系统会自动检索相关知识并生成回答。</p>
+        <div class="welcome-hints">
+          <button class="hint-btn" data-question="请介绍一下知识库中有哪些文档？">有哪些文档？</button>
+          <button class="hint-btn" data-question="请总结当前知识库中所有核心技术参数">总结技术参数</button>
+          <button class="hint-btn" data-question="请帮我分析知识库中提到的中断机制">分析中断机制</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <div class="chat-input-row">
+        <textarea id="chatInput" class="chat-input" placeholder="输入你的问题，按 Enter 发送..." rows="1"></textarea>
+        <button class="btn btn-primary btn-send" id="sendBtn" title="发送">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <p class="chat-hint">Enter 发送 · Shift+Enter 换行</p>
+    </div>
+  </main>
+
+  <aside class="chat-sidebar">
+    <div class="sidebar-section">
+      <h3 class="sidebar-title">对话历史</h3>
+      <button class="btn btn-ghost btn-sm btn-full" id="clearChatBtn" style="margin-bottom:12px;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        清空对话
+      </button>
+      <div class="history-list" id="historyList">
+        <div class="doc-empty">暂无对话记录</div>
+      </div>
+    </div>
+  </aside>
+  </div>
+
+  <script src="/static/js/common.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

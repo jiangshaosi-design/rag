@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG 智能体问答系统</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/landing.css">
+</head>
+<body class="landing-page">
+  <canvas id="particles"></canvas>
+
+  <main class="hero-container">
+    <!-- 左侧 -->
+    <section class="hero-left">
+      <div class="hero-badge anim-fade-up">
+        <span class="badge-dot"></span> RAG 智能体知识库系统
+      </div>
+
+      <h1 class="hero-title anim-fade-up" style="animation-delay: 0.1s">
+        智能知识检索<br>
+        <span class="gradient-text">让文档问答更高效</span>
+      </h1>
+
+      <p class="hero-subtitle anim-fade-up" style="animation-delay: 0.2s">
+        基于检索增强生成技术的企业级智能体问答系统，<br>
+        支持多格式文档入库、向量语义检索与精准来源追溯。
+      </p>
+
+      <div class="tech-stack anim-fade-up" style="animation-delay: 0.3s">
+        <span class="tech-tag"><i class="icon-cpu"></i> DeepSeek V4 Pro</span>
+        <span class="tech-tag"><i class="icon-db"></i> FAISS</span>
+        <span class="tech-tag"><i class="icon-chain"></i> LangChain</span>
+        <span class="tech-tag"><i class="icon-brain"></i> Embedding</span>
+        <span class="tech-tag"><i class="icon-grid"></i> MySQL</span>
+      </div>
+
+      <div class="features-list anim-fade-up" style="animation-delay: 0.4s">
+        <div class="feature-item">
+          <div class="feature-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <span>本地私有化部署，数据安全可控</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <span>PDF / DOCX / Markdown 多格式支持</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <span>FAISS 向量语义检索，毫秒级响应</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg></div>
+          <span>每一条回答均可追溯至原始出处</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右侧 -->
+    <section class="hero-right">
+      <div class="demo-card glass anim-fade-up" style="animation-delay: 0.2s">
+        <div class="demo-header">
+          <div class="demo-dots"><span></span><span></span><span></span></div>
+          <span class="demo-title mono">RAG Pipeline Demo</span>
+        </div>
+        <div class="pipeline-visual">
+          <div class="pipe-node">
+            <div class="pipe-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg></div>
+            <span>文档解析</span>
+          </div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-node">
+            <div class="pipe-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <span>文本分块</span>
+          </div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-node">
+            <div class="pipe-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+            <span>向量化</span>
+          </div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-node">
+            <div class="pipe-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <span>检索问答</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-questions anim-fade-up" style="animation-delay: 0.4s">
+        <h3 class="example-label">尝试这些问题</h3>
+        <div class="example-card glass" data-question="请介绍一下知识库中有哪些文档？">
+          <span class="example-icon">01</span>
+          <span>知识库中有哪些文档可供查询？</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="example-card glass" data-question="请总结CH32V103芯片的主要技术参数">
+          <span class="example-icon">02</span>
+          <span>总结技术文档中的核心技术参数</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="example-card glass" data-question="文档中有哪些关于中断向量表的说明？">
+          <span class="example-icon">03</span>
+          <span>查找关于中断向量表的详细说明</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <a href="/app" class="btn btn-primary btn-cta anim-fade-up" style="animation-delay: 0.5s">
+        开始体验
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <script src="/static/js/landing.js"></script>
+</body>
+</html>
